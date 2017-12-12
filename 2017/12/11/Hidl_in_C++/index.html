@@ -95,10 +95,10 @@
 <meta property="og:site_name" content="wangjiewen's blog">
 <meta property="og:description" content="一、前言binder是Android中重要的进程间通信（IPC）方式。 在8.0之前，多进程间的通信底层广泛使用binder机制。其相关原理、demo网上已非常详尽，在此仅推荐几个相关的链接，见文末参考。 本篇文章将介绍Android 8.0中，关于binder新增内容的思想，具体代码分析及原理考虑后续另写一篇。最后会用C++实现一个demo，从开发者的角度来看看如何使用它。 二、概述1. HID">
 <meta property="og:image" content="http://yoursite.com/2017/12/11/Hidl_in_C++/images/treble_cpp_legacy_hal_progression.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/11/images/server1.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/11/Hidl_in_C++/images/server1.png">
 <meta property="og:image" content="http://yoursite.com/2017/12/11/images/client.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/11/images/server2.png">
-<meta property="og:updated_time" content="2017-12-12T15:32:50.998Z">
+<meta property="og:image" content="http://yoursite.com/images/server2.png">
+<meta property="og:updated_time" content="2017-12-12T15:35:28.521Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android8.0——HIDL in C++">
 <meta name="twitter:description" content="一、前言binder是Android中重要的进程间通信（IPC）方式。 在8.0之前，多进程间的通信底层广泛使用binder机制。其相关原理、demo网上已非常详尽，在此仅推荐几个相关的链接，见文末参考。 本篇文章将介绍Android 8.0中，关于binder新增内容的思想，具体代码分析及原理考虑后续另写一篇。最后会用C++实现一个demo，从开发者的角度来看看如何使用它。 二、概述1. HID">
@@ -398,7 +398,7 @@
 <h2 id="四、结果展示"><a href="#四、结果展示" class="headerlink" title="四、结果展示"></a>四、结果展示</h2><ol>
 <li>启动服务端</li>
 </ol>
-<p><img src="../images/server1.png" alt=""></p>
+<p><img src="./images/server1.png" alt=""></p>
 <ol>
 <li>客户端发消息，收到服务端回应</li>
 </ol>
@@ -406,7 +406,7 @@
 <ol>
 <li>服务端收到客户端消息</li>
 </ol>
-<p><img src="../images/server2.png" alt=""></p>
+<p><img src="/images/server2.png" alt=""></p>
 <h2 id="五、后记"><a href="#五、后记" class="headerlink" title="五、后记"></a>五、后记</h2><p>访问HAL的实现，</p>
 <p>init进程启动，</p>
 <h2 id="六、参考"><a href="#六、参考" class="headerlink" title="六、参考"></a>六、参考</h2><p>感谢前辈们的资料！</p>
