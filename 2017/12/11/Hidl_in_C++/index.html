@@ -94,15 +94,15 @@
 <meta property="og:url" content="http://yoursite.com/2017/12/11/Hidl_in_C++/index.html">
 <meta property="og:site_name" content="wangjiewen's blog">
 <meta property="og:description" content="一、前言binder是Android中重要的进程间通信（IPC）方式。 在8.0之前，多进程间的通信底层广泛使用binder机制。其相关原理、demo网上已非常详尽，在此仅推荐几个相关的链接，见文末参考。 本篇文章将介绍Android 8.0中，关于binder新增内容的思想，具体代码分析及原理考虑后续另写一篇。最后会用C++实现一个demo，从开发者的角度来看看如何使用它。 二、概述1. HID">
-<meta property="og:image" content="http://yoursite.com/2017/12/11/Hidl_in_C++/images/treble_cpp_legacy_hal_progression.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/11/Hidl_in_C++/images/server1.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/11/images/treble_cpp_legacy_hal_progression.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/11/images/server1.png">
 <meta property="og:image" content="http://yoursite.com/2017/12/11/images/client.png">
-<meta property="og:image" content="http://yoursite.com/images/server2.png">
-<meta property="og:updated_time" content="2017-12-12T15:35:28.521Z">
+<meta property="og:image" content="http://yoursite.com/2017/12/11/images/server2.png">
+<meta property="og:updated_time" content="2017-12-12T15:38:43.753Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android8.0——HIDL in C++">
 <meta name="twitter:description" content="一、前言binder是Android中重要的进程间通信（IPC）方式。 在8.0之前，多进程间的通信底层广泛使用binder机制。其相关原理、demo网上已非常详尽，在此仅推荐几个相关的链接，见文末参考。 本篇文章将介绍Android 8.0中，关于binder新增内容的思想，具体代码分析及原理考虑后续另写一篇。最后会用C++实现一个demo，从开发者的角度来看看如何使用它。 二、概述1. HID">
-<meta name="twitter:image" content="http://yoursite.com/2017/12/11/Hidl_in_C++/images/treble_cpp_legacy_hal_progression.png">
+<meta name="twitter:image" content="http://yoursite.com/2017/12/11/images/treble_cpp_legacy_hal_progression.png">
 
 
 
@@ -332,7 +332,7 @@
 <p>本篇文章将介绍Android 8.0中，关于binder新增内容的思想，具体代码分析及原理考虑后续另写一篇。最后会用C++实现一个demo，从开发者的角度来看看如何使用它。</p>
 <h2 id="二、概述"><a href="#二、概述" class="headerlink" title="二、概述"></a>二、概述</h2><h3 id="1-HIDL简介"><a href="#1-HIDL简介" class="headerlink" title="1. HIDL简介"></a>1. HIDL简介</h3><p>对于Android架构而言，8.0版本新增了一项元素是Project Treble，旨在分离framework和vendor，使得制造商更方便地将设备更新到新版的Android系统中，同时Google也收拢对Android版本的控制，以免制造商在Android架构中修改过多。</p>
 <p>根据以上思想，Android 8.0中新增了HIDL（HAL接口定义语言）。制造商新增或更改框架的内容都被放置在<code>/vendor</code>分区中，通过HIDL与HAL层通信，构造编译HIDL，而无需重新构建编译HAL层的内容，做到framework与vendor的分离。官网有一张图介绍引入Treble后，HAL的发展历程，非常形象，如下：</p>
-<p><img src="./images/treble_cpp_legacy_hal_progression.png" alt=""></p>
+<p><img src="../images/treble_cpp_legacy_hal_progression.png" alt=""></p>
 <p>HIDL的核心实现思想就是进程间通信binder化（binderized）。framework与HAL层通信，会由过去直接调用的形式，逐渐过渡为进程间通信的形式。为了方便过渡，C++的HIDL接口分为两种，一种是直通式（passthrough），一种是binder化，代码中巧妙的用参数来实现两种方式的复用，官方称之为“Binder化直通式HAL”，具体用法我们在实现模块中细说。</p>
 <p>由于binder在Treble中有了新的用处，基于分离的设计目标，Google对于binder也做了分离。在过去，制造商进程都使用binder技术进行进程间通信。在Android 8.0中，<code>/dev/binder</code>设备节点成为框架进程的专属节点，意味着供应商无法再访问该节点。根据分离framework和vendor的思想，进程也分为framework进程和vendor进程，原来的binder节点，是framework进程与framework进程通信的节点，由此推出，还需要有framework进程和vendor进程通信的节点，vendor进程和vendor进程通信的节点。</p>
 <p>Android 8.0就此将binder的IPC域划分成以下三个：</p>
@@ -398,7 +398,7 @@
 <h2 id="四、结果展示"><a href="#四、结果展示" class="headerlink" title="四、结果展示"></a>四、结果展示</h2><ol>
 <li>启动服务端</li>
 </ol>
-<p><img src="./images/server1.png" alt=""></p>
+<p><img src="../images/server1.png" alt=""></p>
 <ol>
 <li>客户端发消息，收到服务端回应</li>
 </ol>
@@ -406,10 +406,8 @@
 <ol>
 <li>服务端收到客户端消息</li>
 </ol>
-<p><img src="/images/server2.png" alt=""></p>
-<h2 id="五、后记"><a href="#五、后记" class="headerlink" title="五、后记"></a>五、后记</h2><p>访问HAL的实现，</p>
-<p>init进程启动，</p>
-<h2 id="六、参考"><a href="#六、参考" class="headerlink" title="六、参考"></a>六、参考</h2><p>感谢前辈们的资料！</p>
+<p><img src="../images/server2.png" alt=""></p>
+<h2 id="五、参考"><a href="#五、参考" class="headerlink" title="五、参考"></a>五、参考</h2><p>感谢前辈们的资料！</p>
 <h3 id="1-8-0之前的binder"><a href="#1-8-0之前的binder" class="headerlink" title="1. 8.0之前的binder"></a>1. 8.0之前的binder</h3><h4 id="1-1-原理"><a href="#1-1-原理" class="headerlink" title="1.1 原理"></a>1.1 原理</h4><p><a href="http://gityuan.com/2015/10/31/binder-prepare/" target="_blank" rel="external">Gityuan：Binder系列—开篇</a></p>
 <p><a href="http://blog.csdn.net/universus/article/details/6211589" target="_blank" rel="external">Android Binder设计与实现 - 设计篇</a></p>
 <p><a href="https://my.oschina.net/youranhongcha/blog?sort=time&amp;p=2&amp;temp=1506737360643" target="_blank" rel="external">红茶一杯话Binder</a></p>
@@ -572,7 +570,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、概述"><span class="nav-number">2.</span> <span class="nav-text">二、概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-HIDL简介"><span class="nav-number">2.1.</span> <span class="nav-text">1. HIDL简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-HIDL使用"><span class="nav-number">2.2.</span> <span class="nav-text">2. HIDL使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、实现"><span class="nav-number">3.</span> <span class="nav-text">三、实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-目录结构"><span class="nav-number">3.1.</span> <span class="nav-text">1. 目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-interface"><span class="nav-number">3.2.</span> <span class="nav-text">2. interface</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-IChase-hal和Android-bp"><span class="nav-number">3.2.1.</span> <span class="nav-text">2.1 IChase.hal和Android.bp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-生成文件"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.2 生成文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-接口实现"><span class="nav-number">3.2.3.</span> <span class="nav-text">2.3 接口实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-server-amp-client"><span class="nav-number">3.3.</span> <span class="nav-text">3. server & client</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、结果展示"><span class="nav-number">4.</span> <span class="nav-text">四、结果展示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、后记"><span class="nav-number">5.</span> <span class="nav-text">五、后记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、参考"><span class="nav-number">6.</span> <span class="nav-text">六、参考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-0之前的binder"><span class="nav-number">6.1.</span> <span class="nav-text">1. 8.0之前的binder</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-原理"><span class="nav-number">6.1.1.</span> <span class="nav-text">1.1 原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-数据结构"><span class="nav-number">6.1.2.</span> <span class="nav-text">1.2 数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-demo"><span class="nav-number">6.1.3.</span> <span class="nav-text">1.3 demo</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8-0之后的binder"><span class="nav-number">6.2.</span> <span class="nav-text">2. 8.0之后的binder</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、概述"><span class="nav-number">2.</span> <span class="nav-text">二、概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-HIDL简介"><span class="nav-number">2.1.</span> <span class="nav-text">1. HIDL简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-HIDL使用"><span class="nav-number">2.2.</span> <span class="nav-text">2. HIDL使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、实现"><span class="nav-number">3.</span> <span class="nav-text">三、实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-目录结构"><span class="nav-number">3.1.</span> <span class="nav-text">1. 目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-interface"><span class="nav-number">3.2.</span> <span class="nav-text">2. interface</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-IChase-hal和Android-bp"><span class="nav-number">3.2.1.</span> <span class="nav-text">2.1 IChase.hal和Android.bp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-生成文件"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.2 生成文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-接口实现"><span class="nav-number">3.2.3.</span> <span class="nav-text">2.3 接口实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-server-amp-client"><span class="nav-number">3.3.</span> <span class="nav-text">3. server & client</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、结果展示"><span class="nav-number">4.</span> <span class="nav-text">四、结果展示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、参考"><span class="nav-number">5.</span> <span class="nav-text">五、参考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-0之前的binder"><span class="nav-number">5.1.</span> <span class="nav-text">1. 8.0之前的binder</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-原理"><span class="nav-number">5.1.1.</span> <span class="nav-text">1.1 原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-数据结构"><span class="nav-number">5.1.2.</span> <span class="nav-text">1.2 数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-demo"><span class="nav-number">5.1.3.</span> <span class="nav-text">1.3 demo</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8-0之后的binder"><span class="nav-number">5.2.</span> <span class="nav-text">2. 8.0之后的binder</span></a></li></ol></li></ol></div>
             
 
           </div>
