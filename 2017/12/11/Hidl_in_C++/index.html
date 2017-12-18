@@ -2,10 +2,8 @@
 
 
 
-  
 
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next mist" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -92,13 +90,13 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android8.0——HIDL in C++">
 <meta property="og:url" content="http://yoursite.com/2017/12/11/Hidl_in_C++/index.html">
-<meta property="og:site_name" content="wangjiewen's blog">
+<meta property="og:site_name" content="WangJiewen">
 <meta property="og:description" content="前言binder是Android中重要的进程间通信（IPC）方式。 在8.0之前，多进程间的通信底层广泛使用binder机制。其相关原理、demo网上已非常详尽，在此仅推荐几个相关的链接，见文末参考。 本篇文章将介绍Android 8.0中，关于binder新增内容的思想，具体代码分析及原理考虑后续另写一篇。最后会用C++实现一个demo，从开发者的角度来看看如何使用它。 概述HIDL简介对于An">
 <meta property="og:image" content="http://yoursite.com/2017/12/11/Hidl_in_C++/treble_cpp_legacy_hal_progression.png">
 <meta property="og:image" content="http://yoursite.com/2017/12/11/Hidl_in_C++/server1.png">
 <meta property="og:image" content="http://yoursite.com/2017/12/11/Hidl_in_C++/client.png">
 <meta property="og:image" content="http://yoursite.com/2017/12/11/Hidl_in_C++/server2.png">
-<meta property="og:updated_time" content="2017-12-17T06:55:48.457Z">
+<meta property="og:updated_time" content="2017-12-18T15:49:30.314Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android8.0——HIDL in C++">
 <meta name="twitter:description" content="前言binder是Android中重要的进程间通信（IPC）方式。 在8.0之前，多进程间的通信底层广泛使用binder机制。其相关原理、demo网上已非常详尽，在此仅推荐几个相关的链接，见文末参考。 本篇文章将介绍Android 8.0中，关于binder新增内容的思想，具体代码分析及原理考虑后续另写一篇。最后会用C++实现一个demo，从开发者的角度来看看如何使用它。 概述HIDL简介对于An">
@@ -111,9 +109,9 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
-    motion: true,
+    motion: false,
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -136,7 +134,7 @@
 
 
 
-  <title> Android8.0——HIDL in C++ | wangjiewen's blog </title>
+  <title> Android8.0——HIDL in C++ | WangJiewen </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -172,7 +170,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">wangjiewen's blog</span>
+        <span class="site-title">WangJiewen</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -203,6 +201,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -258,13 +266,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/11/Hidl_in_C++/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangjiewen">
+      <meta itemprop="name" content="WangJiewen">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wangjiewen's blog">
+      <meta itemprop="name" content="WangJiewen">
     </span>
 
     
@@ -428,6 +436,27 @@
     <div>
       
         
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward.png" alt="WangJiewen WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward.png" alt="WangJiewen Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
 
       
     </div>
@@ -524,11 +553,11 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="wangjiewen" />
-          <p class="site-author-name" itemprop="name">wangjiewen</p>
+               src="/images/avatar.png"
+               alt="WangJiewen" />
+          <p class="site-author-name" itemprop="name">WangJiewen</p>
            
-              <p class="site-description motion-element" itemprop="description">wangjiewen blog</p>
+              <p class="site-description motion-element" itemprop="description"></p>
           
         </div>
         <nav class="site-state motion-element">
@@ -548,10 +577,10 @@
             
             
             <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">1</span>
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 
@@ -560,6 +589,17 @@
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wangjiewen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
           
         </div>
 
@@ -611,7 +651,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">wangjiewen</span>
+  <span class="author" itemprop="copyrightHolder">WangJiewen</span>
 </div>
 
 

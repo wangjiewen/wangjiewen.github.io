@@ -2,10 +2,8 @@
 
 
 
-  
 
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next mist" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -87,15 +85,12 @@
 
 
 
-<meta name="description" content="wangjiewen blog">
 <meta property="og:type" content="website">
-<meta property="og:title" content="wangjiewen's blog">
+<meta property="og:title" content="WangJiewen">
 <meta property="og:url" content="http://yoursite.com/archives/2017/12/index.html">
-<meta property="og:site_name" content="wangjiewen's blog">
-<meta property="og:description" content="wangjiewen blog">
+<meta property="og:site_name" content="WangJiewen">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wangjiewen's blog">
-<meta name="twitter:description" content="wangjiewen blog">
+<meta name="twitter:title" content="WangJiewen">
 
 
 
@@ -104,9 +99,9 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
-    motion: true,
+    motion: false,
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -129,7 +124,7 @@
 
 
 
-  <title> 归档 | wangjiewen's blog </title>
+  <title> 归档 | WangJiewen </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -165,7 +160,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">wangjiewen's blog</span>
+        <span class="site-title">WangJiewen</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -196,6 +191,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -328,11 +333,11 @@
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="wangjiewen" />
-          <p class="site-author-name" itemprop="name">wangjiewen</p>
+               src="/images/avatar.png"
+               alt="WangJiewen" />
+          <p class="site-author-name" itemprop="name">WangJiewen</p>
            
-              <p class="site-description motion-element" itemprop="description">wangjiewen blog</p>
+              <p class="site-description motion-element" itemprop="description"></p>
           
         </div>
         <nav class="site-state motion-element">
@@ -352,10 +357,10 @@
             
             
             <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">1</span>
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 
@@ -364,6 +369,17 @@
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wangjiewen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
           
         </div>
 
@@ -399,7 +415,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">wangjiewen</span>
+  <span class="author" itemprop="copyrightHolder">WangJiewen</span>
 </div>
 
 
@@ -485,10 +501,6 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
   
 
 
