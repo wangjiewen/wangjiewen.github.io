@@ -2,37 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/history/index.html</loc>
+    <loc>http://yoursite.com/2019/01/09/test/</loc>
     
-    <lastmod>2018-01-01T09:17:25.286Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/tags/index.html</loc>
-    
-    <lastmod>2018-01-01T08:39:33.407Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/about/index.html</loc>
-    
-    <lastmod>2017-12-31T07:35:23.131Z</lastmod>
+    <lastmod>2019-01-09T12:25:11.272Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2017/04/05/vim%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/</loc>
     
-    <lastmod>2017-12-18T15:52:46.259Z</lastmod>
+    <lastmod>2018-08-13T15:37:58.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2017/12/11/Hidl_in_C++/</loc>
     
-    <lastmod>2017-12-18T15:49:30.314Z</lastmod>
+    <lastmod>2018-08-13T15:37:58.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2018-08-13T15:37:58.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/history/index.html</loc>
+    
+    <lastmod>2018-08-13T15:37:58.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/index.html</loc>
+    
+    <lastmod>2018-08-13T15:37:58.000Z</lastmod>
     
   </url>
   

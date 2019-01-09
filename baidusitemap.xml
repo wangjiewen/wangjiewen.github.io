@@ -3,12 +3,26 @@
 
 
     
-    
-    
+  <url>
+    <loc>http://yoursite.com/2019/01/09/test/</loc>
+    <lastmod>2019-01-09T12:25:11.272Z</lastmod>
+    <data>
+        <display>
+        <title>迁移测试</title>
+        <pubTime>2019-01-08T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
     
   <url>
     <loc>http://yoursite.com/2017/04/05/vim%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2017-12-18T15:52:46.259Z</lastmod>
+    <lastmod>2018-08-13T15:37:58.000Z</lastmod>
     <data>
         <display>
         <title>vim基础学习</title>
@@ -25,7 +39,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/12/11/Hidl_in_C++/</loc>
-    <lastmod>2017-12-18T15:49:30.314Z</lastmod>
+    <lastmod>2018-08-13T15:37:58.000Z</lastmod>
     <data>
         <display>
         <title>Android8.0——HIDL in C++</title>
@@ -39,4 +53,7 @@
     </data>
     </url>
 
+    
+    
+    
 </urlset>
